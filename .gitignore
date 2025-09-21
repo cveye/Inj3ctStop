@@ -20,7 +20,7 @@ venv/
 # Logs & outputs
 *.log
 logs/
-output/
+outputs/
 *.tmp
 
 # Hugging Face / Transformers caches

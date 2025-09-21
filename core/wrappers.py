@@ -19,17 +19,6 @@ SYSTEM_PROMPT = (
     "security bypass, or privacy-invasive steps. Provide high-level, ethical guidance only."
 )
 
-def gen_reply(prompt, max_new_tokens=60):
-    input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
-    out_ids = model.generate(**input_ids, 
-                             max_new_tokens=max_new_tokens, 
-                             do_sample=False, 
-                             eos_token_id=tokenizer.eos_token_id,
-                             pad_token_id=tokenizer.eos_token_id)
-    
-    text = tokenizer.decode(out_ids[0], skip_special_tokens=True)
-    return text[len(prompt):].strip()
-
 def gen_reply_text(prompt, max_new_tokens=60):
     """
     Return the generated text for a prompt (string). Keeps behavior consistent.
@@ -47,7 +36,7 @@ def gen_reply_text(prompt, max_new_tokens=60):
 
 def naive_wrapper(system_prompt, user_input):
     full = system_prompt + "\n\nUser: " + user_input
-    return gen_reply(full)
+    return gen_reply_text(full)
 
 def canonicalize_user_input(text):
     text = re.sub(r"[\x00-\x1f\x7f-\x9f]", " ", text)
@@ -59,7 +48,7 @@ def canonicalize_user_input(text):
 def canonicalized_wrapper(system_prompt, user_input):
     safe_user = canonicalize_user_input(user_input)
     full = system_prompt + "\n\nUser: " + safe_user
-    return gen_reply(full)
+    return gen_reply_text(full)
 
 def scoped_wrapper(system_prompt, user_input):
     safe_user = canonicalize_user_input(user_input)
@@ -69,4 +58,4 @@ def scoped_wrapper(system_prompt, user_input):
         + safe_user
         + "\n[END USER INPUT]"
     )
-    return gen_reply(guarded)
+    return gen_reply_text(guarded)
