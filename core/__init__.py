@@ -3,6 +3,8 @@ import logging
 import sys
 import os
 from datetime import datetime
+import colorama
+colorama.init(autoreset=True)
 
 # ANSI color codes
 ANSI_RESET = "\033[0m"
