@@ -21,7 +21,27 @@ SYSTEM_PROMPT = (
 
 def gen_reply(prompt, max_new_tokens=60):
     input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
-    out_ids = model.generate(input_ids, max_new_tokens=max_new_tokens, do_sample=False, eos_token_id=tokenizer.eos_token_id)
+    out_ids = model.generate(**input_ids, 
+                             max_new_tokens=max_new_tokens, 
+                             do_sample=False, 
+                             eos_token_id=tokenizer.eos_token_id,
+                             pad_token_id=tokenizer.eos_token_id)
+    
+    text = tokenizer.decode(out_ids[0], skip_special_tokens=True)
+    return text[len(prompt):].strip()
+
+def gen_reply_text(prompt, max_new_tokens=60):
+    """
+    Return the generated text for a prompt (string). Keeps behavior consistent.
+    """
+    inputs = tokenizer(prompt, return_tensors="pt").to(device)
+    out_ids = model.generate(
+        **inputs,
+        max_new_tokens=max_new_tokens,
+        do_sample=False,
+        eos_token_id=tokenizer.eos_token_id,
+        pad_token_id=tokenizer.eos_token_id
+    )
     text = tokenizer.decode(out_ids[0], skip_special_tokens=True)
     return text[len(prompt):].strip()
 
