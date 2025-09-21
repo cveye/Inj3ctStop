@@ -1,11 +1,6 @@
 # Inj3ctStop  
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)  
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
-[![Status](https://img.shields.io/badge/status-live-brightgreen.svg)](#)  
-[![Tests](https://img.shields.io/badge/tests-passing-success.svg)](#)  
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blueviolet.svg)](https://github.com/cveye/Inj3ctStop/pulls)  
-[![Made with ❤️](https://img.shields.io/badge/made%20with-%E2%9D%A4-red.svg)](#)  
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) [![Status](https://img.shields.io/badge/status-live-brightgreen.svg)](#)  [![Tests](https://img.shields.io/badge/tests-passing-success.svg)](#)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blueviolet.svg)](https://github.com/cveye/Inj3ctStop/pulls)  [![Made with ❤️](https://img.shields.io/badge/made%20with-%E2%9D%A4-red.svg)](#)  
  
 
 **Stop prompt injections. Ship safer LLM apps.**  
