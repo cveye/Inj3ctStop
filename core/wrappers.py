@@ -9,8 +9,8 @@ MODEL = "distilgpt2"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 logger.info("Loading model %s on device %s", MODEL, device)
 
-tokenizer = AutoTokenizer.from_pretrained(MODEL)
-model = AutoModelForCausalLM.from_pretrained(MODEL).to(device)
+tokenizer = AutoTokenizer.from_pretrained(MODEL, cache_dir="./models")
+model = AutoModelForCausalLM.from_pretrained(MODEL, cache_dir="./models").to(device)
 model.eval()
 logger.info("Model loaded successfully.")
 
