@@ -2,18 +2,17 @@
 
 **Stop prompt injections. Ship safer LLM apps.**
 
-Inj3ctStop is a compact, defensive playground and starter toolkit for securing LLM wrappers and assistant deployments. It’s designed for engineers and security practitioners who want hands-on, reproducible examples that demonstrate:
-- how naive wrappers can be manipulated,
-- simple defenses you can add quickly (sanitization, instruction scoping, response verification),
-- an easy path to CI canaries and lightweight verifiers.
+Inj3ctStop is a lightweight security layer for LLM applications. It provides:
+- prompt wrappers with sanitization and scoping,
+- a simple response verifier,
+- ready-to-run scripts for local and remote (VM) environments.
 
-This repo is intentionally small and safe — all injection-like inputs are simulated and the focus is defensive.
+All examples use **simulated** injection inputs. This project is defensive and educational, intended to evolve into a professional toolkit.
 
 ## Quickstart
 
 ```bash
-git clone https://github.com/<your-org>/Inj3ctStop.git
+git clone https://github.com/cveye/Inj3ctStop.git
 cd Inj3ctStop
-make install        # creates venv and installs deps
-make run            # runs the demo with a simulated injection input
-
+make install        # create venv and install dependencies
+make run            # run the injection-handling example
