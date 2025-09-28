@@ -1,6 +1,6 @@
 # v1 — Simple Filters & Scoped Prompts
  
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../../LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blueviolet.svg)](https://github.com/cveye/Inj3ctStop/pulls)[![GitHub stars](https://img.shields.io/github/stars/cveye/Inj3ctStop?style=social)](https://github.com/cveye/Inj3ctStop/stargazers)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../../LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blueviolet.svg)](https://github.com/cveye/Inj3ctStop/pulls)[![GitHub stars](https://img.shields.io/github/stars/cveye/Inj3ctStop?style=social)](https://github.com/cveye/Inj3ctStop/stargazers)[![Made with ❤️](https://img.shields.io/badge/made%20with-%E2%9D%A4-red.svg)](#)
 
 
 **Stop prompt injections. Ship safer LLM apps.**  
@@ -57,6 +57,23 @@ make test
 2025-09-21 03:43:49 [INFO] Inj3ctStop: SCOPED:  verifier=True, reason=ok
 
 ```
+
+### Notes & recommended next steps
+
+- v1 is intentionally compact: it demonstrates why naive defenses fail and what better scoped prompting looks like.
+
+- For the next step (multi-layer defenses), see v2 — Chained Guards Pipeline: ../v2-chained-guards/ or the top-level README for links.
+
+- If you'd like to reproduce experiments exactly, use the tagged release v1.0 (see project releases).
+
+### Contributing
+
+Contributions, issues, attack patterns, and PRs are welcome. Please keep submissions defensive and educational.
+
+### License
+
+MIT — see the top-level LICENSE file.
+
 ### Ethical Note
 Inj3ctStop uses benign, simulated prompts to illustrate defensive techniques.
 
