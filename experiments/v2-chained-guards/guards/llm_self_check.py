@@ -26,6 +26,6 @@ def llm_self_check(text: str) -> Tuple[bool, str]:
     ppl = torch.exp(loss).item()
 
     # threshold is tunable —> higher perplexity = more suspicious
-    if ppl > 60:
+    if ppl > 80 and len(inputs["input_ids"][0]) < 10:
         return True, f"high-perplexity:{ppl:.1f}"
     return False, f"ok:{ppl:.1f}"
