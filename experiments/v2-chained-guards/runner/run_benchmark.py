@@ -43,8 +43,8 @@ def run(layers, corpus_path):
     avg_latency = sum(stats["latencies"]) / len(stats["latencies"]) if stats["latencies"] else 0.0
     print("--- Benchmark Results ---")
     print(f"layers: {layers}")
-    print(f"total: {stats['total']} | blocked: {stats['blocked']} | flagged: {stats['flagged']} | delivered: {stats['delivered']}")
-    print(f"avg latency ms: {avg_latency:.2f}")
+    print(f"total: {stats['total']} | blocked: {stats['blocked']} | flagged: {stats['flagged']} | delivered: {stats['delivered']} | avg latency ms: {avg_latency:.2f}")
+    #print(f"avg latency ms: {avg_latency:.2f}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

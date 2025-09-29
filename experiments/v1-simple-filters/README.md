@@ -79,3 +79,12 @@ Inj3ctStop uses benign, simulated prompts to illustrate defensive techniques.
 
 - No real exploits are included.
 - The focus is security awareness and safer LLM usage.
+
+## ⚖️ Ethical Use
+
+This project is intended **for defensive research and educational purposes only**.  
+It does **not** contain real jailbreak payloads or exploits — only simulated examples for testing.  
+
+Please **do not use this project to build or share offensive tools**.  
+The goal of Inj3ctStop is to **understand, demonstrate, and improve defenses** against prompt injection attacks,  
+so that the community can build safer LLM applications.
