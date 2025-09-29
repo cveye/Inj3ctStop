@@ -23,7 +23,7 @@ def llm_self_check(text: str) -> Tuple[bool, str]:
     inputs = _tokenizer(text, return_tensors="pt")
     with torch.no_grad():
         loss = _model(**inputs, labels=inputs["input_ids"]).loss
-    ppl = torch.exp(loss).item()
+        ppl = torch.exp(loss).item() / len(inputs["input_ids"][0])
 
     # threshold is tunable —> higher perplexity = more suspicious
     if ppl > 80 and len(inputs["input_ids"][0]) < 10:

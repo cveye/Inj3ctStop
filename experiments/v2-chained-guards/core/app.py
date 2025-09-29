@@ -19,7 +19,7 @@ app = Flask(__name__)
 DEMO_HTML = """
 <!doctype html>
 <title>v2 — Chained Guards Demo</title>
-<h1>Chained Guards Demo</h1>
+<h1>Chained Guards - Defending LLMs</h1>
 <form method=post action="/api/check">
   <textarea name=prompt rows=6 cols=80 placeholder="Type an input to test..."></textarea><br>
   <label>Layers (comma separated):</label>
