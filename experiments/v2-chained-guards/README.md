@@ -35,7 +35,12 @@ This will run the attack corpus (reused from v1/tests) and print a detection tab
 
 ## Sample output
 
-![alt text](../v2-chained-guards/image.png)
+![alt text](../../resources/log.png)
+
+## Run Demo
+After the quickstart section, open the following in your browser : http://localhost:8080/demo
+![alt text](../../resources/demo_window.png)
+
 ## Notes
 This scaffold uses lightweight, easily reproducible stubs for embedding and LLM checks so the experiment is easy to run locally. Replace the stubs with real models (embedding model, LLM API) when you want to evaluate real performance.
 
