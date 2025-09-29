@@ -20,7 +20,7 @@ def embedding_check(text: str, threshold: float = 0.75) -> Tuple[bool, float]:
     True if similarity to policy templates < threshold.
     """
     vec = _model.encode(text, convert_to_numpy=True)
-    sims = [_model.similarity(vec, _model.encode(t, convert_to_numpy=True)) for t in POLICY_TEMPLATES]
+    sims = [cosine_sim(vec, emb) for emb in _POLICY_EMBS]
     max_sim = max(sims)
     is_malicious = max_sim < threshold
-    return is_malicious, float(max_sim)
+    return bool(is_malicious), float(max_sim)
