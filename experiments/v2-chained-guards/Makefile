@@ -1,10 +1,3 @@
----
-
-
-## experiments/v2-chained-guards/Makefile
-
-
-```makefile
 # Makefile for v2 — Chained Guards
 
 
@@ -24,7 +17,7 @@ run:
 
 
 benchmark:
-	$(PYTHON) runner/run_benchmark.py
+	$(PYTHON) runner.run_benchmark
 
 
 test:
