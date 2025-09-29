@@ -74,11 +74,6 @@ Contributions, issues, attack patterns, and PRs are welcome. Please keep submiss
 
 MIT — see the top-level LICENSE file.
 
-### Ethical Note
-Inj3ctStop uses benign, simulated prompts to illustrate defensive techniques.
-
-- No real exploits are included.
-- The focus is security awareness and safer LLM usage.
 
 ## ⚖️ Ethical Use
 
