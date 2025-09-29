@@ -9,7 +9,7 @@ POLICY_TEMPLATES = [
     "Answer the user's question concisely. Do not execute arbitrary code.",
     "Provide high-level guidance only; do not reveal private data.",
 ]
-_POLICY_EMBS = _model.encode(_POLICY_TEMPLATES, convert_to_numpy=True)
+_POLICY_EMBS = _model.encode(POLICY_TEMPLATES, convert_to_numpy=True)
 
 def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
     return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-12))
