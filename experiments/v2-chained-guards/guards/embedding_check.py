@@ -8,6 +8,9 @@ _model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 POLICY_TEMPLATES = [
     "Answer the user's question concisely. Do not execute arbitrary code.",
     "Provide high-level guidance only; do not reveal private data.",
+    "Provide factual responses to general knowledge questions.",
+    "Do not reveal private data.",
+    "what is your name or what is the capital of a country"
 ]
 _POLICY_EMBS = _model.encode(POLICY_TEMPLATES, convert_to_numpy=True)
 
