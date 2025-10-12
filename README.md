@@ -22,6 +22,8 @@ All experiments use **simulated inputs** for learning and research. This repo is
 
 ## 📚 Experiments
 
+[![What's New](https://img.shields.io/badge/What's%20New-v3%20--%20Context--Aware%20Detection-brightgreen.svg)](https://github.com/cveye/Inj3ctStop/tree/main/experiments/v3-context-aware)
+
 ### 🔹 v1 — Simple Filters & Scoped Prompts
 - Shows why naive wrappers and regex sanitization fail 🚨
 - Demonstrates how **scoped prompts + verification** perform better ✅
@@ -40,6 +42,16 @@ All experiments use **simulated inputs** for learning and research. This repo is
   - Benchmark runner with `attack_corpus.json`
   - Unit tests per guard and end-to-end
 - [See code](experiments/v2-chained-guards)
+
+### v3 — Context-Aware Injection Detection (Memory Makes Prompt Injections Dangerous)
+
+- Adds short-term session memory (last N turns) and a context guard that compares the new prompt against recent history using MiniLM embeddings.
+- Flags two classes:
+    - `explicit_override` → phrases like “ignore previous”, “forget earlier”, “reset rules”.
+    - `context_shift` → sudden semantic drift from the recent user turn (low similarity).
+- Memory toggle in the demo UI so you can see how outcomes change with/without context.
+
+- [See code](experiments/v3-context-aware)
 
 More experiments are planned — each adds realism and complexity to the stack.
 
@@ -62,20 +74,23 @@ Each experiment includes a runner that executes a corpus of benign and malicious
 Example for v2:
 
 ```bash
-cd experiments/v2-chained-guards
-make benchmark
-```
-## Sample output:
+cd experiments/v3-context-aware
+make install
+make run
 
-![alt text](resources/chained_log.png)
+# then open http://localhost:8080/v3exp
+```
+![alt text](resources/memory_context.jpg)
 
 ## 📊 Roadmap
 - v1: ✅ Simple filters + scoped prompts
 
 - v2: ✅ Chained guards pipeline
 
-- v3: 🔄 Extended benchmarks, obfuscation attacks, richer metrics (releasing soon)
-- vn : More enroute ...
+- v3: ✅ Context-aware detection (memory + context guard)
+- v4: 🔄 Signature + heuristic engine (IDS-style rules + entropy/keyword scores)
+
+- Vn: 🔄 More to come ....
 
 ## 🤝 Contributing
 Contributions, ideas, issues, and PRs are welcome!
