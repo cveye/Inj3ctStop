@@ -39,13 +39,14 @@ def context_guard(new_prompt: str, history_text: str,
       - Else compare ONLY to the last user prompt (not the whole history).
       - Do not flag short follow-up questions purely on low similarity.
     """
+    if not history_text.strip():
+        return False, "no_context", 1.0
+    
     lowered = new_prompt.lower()
     for pat in OVERRIDE_PATTERNS:
         if re.search(pat, lowered):
             return True, "explicit_override", 0.0
 
-    if not history_text.strip():
-        return False, "no_context", 1.0
 
     last_user = _extract_last_user(history_text)
     if not last_user:

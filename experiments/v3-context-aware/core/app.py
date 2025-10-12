@@ -25,7 +25,7 @@ HTML = """
 <body>
   <h1>🧠 Context-Aware Injection Detection</h1>
 
-  <form method="post" action="/demo">
+  <form method="post" action="/v3exp">
     <label><input type="checkbox" name="memory" value="on" {% if memory %}checked{% endif %}> Enable memory (last 3 turns)</label><br><br>
 
     {% if memory and history %}
@@ -74,7 +74,7 @@ HTML = """
 app = Flask(__name__)
 GLOBAL_SESSION = SessionManager(window=3)  # Demo: single in-memory session
 
-@app.route("/demo", methods=["GET", "POST"])
+@app.route("/v3exp", methods=["GET", "POST"])
 def demo():
     memory = False
     prompt = ""
@@ -109,5 +109,5 @@ def api_check():
     return jsonify(res)
 
 if __name__ == "__main__":
-    logger.info("Starting v3 demo at http://0.0.0.0:8080/demo")
+    logger.info("Starting v3 demo at http://0.0.0.0:8080/v3exp")
     app.run(host="0.0.0.0", port=8080, debug=True)
