@@ -17,7 +17,7 @@ _POLICY_EMBS = _model.encode(POLICY_TEMPLATES, convert_to_numpy=True)
 def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
     return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-12))
 
-def embedding_check(text: str, threshold: float = 0.4) -> Tuple[bool, float]:
+def embedding_check(text: str, threshold: float = 0.3) -> Tuple[bool, float]:
     """
     Return (is_malicious, max_sim).
     True if similarity to policy templates < threshold.

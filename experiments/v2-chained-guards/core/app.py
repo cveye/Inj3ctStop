@@ -21,7 +21,7 @@ HTML_TEMPLATE = """
 <!doctype html>
 <html>
 <head>
-  <title>v2 — Chained Guards - LLM defense</title>
+  <title>v2 — Chained Guards - LLM defence</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 30px; }
     textarea { width: 80%; height: 100px; }
@@ -34,7 +34,7 @@ HTML_TEMPLATE = """
   </style>
 </head>
 <body>
-  <h1>🛡️ Chained Guards - LLM defense</h1>
+  <h1>🛡️ Chained Guards - LLM defence</h1>
   <form method="post" action="/api/check">
   <textarea name="prompt" placeholder="Type a prompt…">{{ request.form.get('prompt','') }}</textarea><br><br>
 

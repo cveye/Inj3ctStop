@@ -1,6 +1,13 @@
 from typing import Tuple
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+)
+logger = logging.getLogger("llm_check")
 
 # load distilgpt2 once at import
 _tokenizer = AutoTokenizer.from_pretrained("distilgpt2")
@@ -23,9 +30,11 @@ def llm_self_check(text: str) -> Tuple[bool, str]:
     inputs = _tokenizer(text, return_tensors="pt")
     with torch.no_grad():
         loss = _model(**inputs, labels=inputs["input_ids"]).loss
-        ppl = torch.exp(loss).item() / len(inputs["input_ids"][0])
-
+    
+    ppl = torch.exp(loss).item() / len(inputs["input_ids"][0])
+    logger.info(f"ppl is : {ppl}")
+        
     # threshold is tunable —> higher perplexity = more suspicious
-    if ppl > 80 and len(inputs["input_ids"][0]) < 10:
+    if ppl > 80:
         return True, f"high-perplexity:{ppl:.1f}"
     return False, f"ok:{ppl:.1f}"
