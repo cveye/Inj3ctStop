@@ -49,7 +49,7 @@ All experiments use **simulated inputs** for learning and research. This repo is
 - Flags two classes:
     - `explicit_override` → phrases like “ignore previous”, “forget earlier”, “reset rules”.
     - `context_shift` → sudden semantic drift from the recent user turn (low similarity).
-- Memory toggle in the demo UI so you can see how outcomes change with/without context.
+- Memory toggle in the demo UI (/v3exp) so you can see how outcomes change with/without context.
 
 - [See code](experiments/v3-context-aware)
 
@@ -59,28 +59,22 @@ More experiments are planned — each adds realism and complexity to the stack.
 
 ## 🚀 Quickstart
 
-Clone and run an experiment:
+Clone and run an experiment with latest-v3:
 
 ```bash
 git clone https://github.com/cveye/Inj3ctStop.git
-cd Inj3ctStop/experiments/v2-chained-guards
+cd Inj3ctStop/experiments/v3-context-aware
 
-make install
-make run
-```
-## 🧪 Benchmarks
-Each experiment includes a runner that executes a corpus of benign and malicious prompts.
-
-Example for v2:
-
-```bash
-cd experiments/v3-context-aware
 make install
 make run
 
 # then open http://localhost:8080/v3exp
 ```
+
+
 ![alt text](resources/memory_context.jpg)
+
+[See here for more of v3](experiments/v3-context-aware)
 
 ## 📊 Roadmap
 - v1: ✅ Simple filters + scoped prompts
