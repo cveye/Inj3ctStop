@@ -1,0 +1,26 @@
+[
+  {
+    "id": "sig.override.ignore_previous",
+    "pattern": "(?i)\\b(ignore|disregard)\\s+previous(\\s+instructions|\\s+rules)?\\b",
+    "category": "instruction_override",
+    "severity": 0.85
+  },
+  {
+    "id": "sig.delete.all",
+    "pattern": "(?i)\\b(delete|erase|wipe)\\s+(all|entire)\\s+(records|data|history)\\b",
+    "category": "destructive_action",
+    "severity": 0.90
+  },
+  {
+    "id": "sig.exfil.account_dump",
+    "pattern": "(?i)\\b(list|export|dump)\\s+all\\s+(accounts?|users?)\\b",
+    "category": "data_exfiltration",
+    "severity": 0.75
+  },
+  {
+    "id": "sig.secret.password",
+    "pattern": "(?i)\\b(pass ?word|admin\\s*pass)\\b",
+    "category": "secrets",
+    "severity": 1.00
+  }
+]
