@@ -11,7 +11,19 @@ def _load_signatures() -> None:
     global _SIGS, _COMPILED
     if _SIGS:
         return
-    sig_path = Path(__file__).resolve().parents[1] / "signatures.json"
+    
+    here = Path(__file__).resolve()
+    candidates = [
+        here.parent.parent / "signatures.json",                  # .../v4-signature-heuristic/signatures.json
+        here.parent.parent.parent / "signatures.json",           # fallback if run deeper
+    ]
+
+    sig_path = next((p for p in candidates if p.exists()), None)
+    if sig_path is None:
+        raise FileNotFoundError(
+            f"Could not find signatures.json in expected locations: {candidates}"
+        )
+
     with open(sig_path, "r", encoding="utf-8") as f:
         _SIGS = json.load(f)
     _COMPILED = [(s, re.compile(s["pattern"])) for s in _SIGS]
