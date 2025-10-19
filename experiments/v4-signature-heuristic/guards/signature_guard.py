@@ -7,6 +7,12 @@ from pathlib import Path
 _SIGS: List[Dict[str, Any]] = []
 _COMPILED = []
 
+# The LEET table is fun
+_LEET_TABLE = str.maketrans({
+    "0": "o", "1": "i", "3": "e", "4": "a", "5": "s", "7": "t", "8": "b", "9": "g",
+    "@": "a", "$": "s"
+})
+
 def _load_signatures() -> None:
     global _SIGS, _COMPILED
     if _SIGS:
@@ -28,29 +34,41 @@ def _load_signatures() -> None:
         _SIGS = json.load(f)
     _COMPILED = [(s, re.compile(s["pattern"])) for s in _SIGS]
 
+def _normalize_leet(s: str) -> str:
+    s2 = s.lower().translate(_LEET_TABLE)
+    # replace non-word with space, collapse spaces
+    s2 = re.sub(r"[^\p{L}\p{N}\s]+", " ", s2)
+    s2 = re.sub(r"\s+", " ", s2).strip()
+    return s2
+
 def signature_guard(text: str) -> Tuple[float, Dict[str, Any]]:
     """
     Returns (risk_score in [0,1], details).
     risk_score is severity-weighted signal of how many signatures matched.
+    Also checking for Leets to make it leet resilient
     """
     _load_signatures()
+    texts = [text, _normalize_leet(text)]
+    
     matches = []
     total_sev = 0.0
     max_sev = 0.0
 
-    for sig, cre in _COMPILED:
-        hits = list(cre.finditer(text))
-        if not hits:
-            continue
-        matches.append({
-            "id": sig["id"],
-            "category": sig.get("category", "other"),
-            "count": len(hits),
-            "severity": float(sig.get("severity", 0.5))
-        })
-        # Simple aggregation: severity * count, and remember max severity hit
-        total_sev += float(sig.get("severity", 0.5)) * len(hits)
-        max_sev = max(max_sev, float(sig.get("severity", 0.5)))
+    for candidate in texts:
+        for sig, cre in _COMPILED:
+            hits = list(cre.finditer(candidate))
+            if not hits:
+                continue
+            sev = float(sig.get("severity", 0.5))
+            matches.append({
+                "id": sig["id"],
+                "category": sig.get("category", "other"),
+                "count": len(hits),
+                "severity": sev,
+                "normalized": (candidate is not text)  # mark if matched in normalized
+            })
+            total_sev += sev * len(hits)
+            max_sev = max(max_sev, sev)
 
     # Normalize: squash via 1 - exp(-x) to keep bounded in [0,1)
     # and add a small boost for the strongest single hit.
