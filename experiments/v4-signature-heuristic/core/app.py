@@ -32,7 +32,7 @@ HTML = """
 </head>
 <body>
   <h1>🛡️ v4 — Signature + Heuristic Engine</h1>
-  <form method="post" action="/demo">
+  <form method="post" action="/sigheu">
     <div class="row">
       <textarea name="prompt" placeholder="Type a prompt to test...">{{ prompt or '' }}</textarea>
     </div>
@@ -87,7 +87,7 @@ HTML = """
 app = Flask(__name__)
 pipeline = SignatureHeuristicPipeline()
 
-@app.route("/demo", methods=["GET", "POST"])
+@app.route("/sigheu", methods=["GET", "POST"])
 def demo():
     prompt = ""
     result = None
@@ -107,5 +107,5 @@ def api_analyze():
     return jsonify(res)
 
 if __name__ == "__main__":
-    log.info("Starting v4 demo at http://0.0.0.0:8080/demo")
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    log.info("Starting v4 demo at http://0.0.0.0:8084/sigheu")
+    app.run(host="0.0.0.0", port=8084, debug=True)

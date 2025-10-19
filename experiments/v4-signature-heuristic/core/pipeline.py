@@ -6,7 +6,7 @@ from guards.heuristic_guard import heuristic_guard
 
 DEFAULT_LAYERS: List[str] = ["signature_guard", "heuristic_guard"]
 DEFAULT_WEIGHTS = {"signature": 0.6, "heuristic": 0.4}
-DEFAULT_BLOCK_THRESHOLD = 0.70  # final risk over this -> flagged
+DEFAULT_BLOCK_THRESHOLD = 0.6  # final risk over this -> flagged
 
 class SignatureHeuristicPipeline:
     def __init__(self,
