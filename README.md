@@ -94,7 +94,7 @@ make run
 - v3: ✅ Context-aware detection (memory + context guard)
 - v4: ✅ Signature + heuristic engine (IDS-style rules + entropy/keyword scores)
 
-- Vn: 🔄 More to come ....
+- V5: 🔄 Auto-Triage Engine. Coming soon !
 
 ## 🤝 Contributing
 Contributions, ideas, issues, and PRs are welcome!
