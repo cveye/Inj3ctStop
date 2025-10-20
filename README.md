@@ -22,7 +22,7 @@ All experiments use **simulated inputs** for learning and research. This repo is
 
 ## 📚 Experiments
 
-[![What's New](https://img.shields.io/badge/What's%20New-v3%20--%20Context--Aware%20Detection-brightgreen.svg)](https://github.com/cveye/Inj3ctStop/tree/main/experiments/v3-context-aware)
+[![What's New](https://img.shields.io/badge/What's%20New-v4%20--%20Signature--Heurestics%20Proactive%20Defense-brightgreen.svg)](https://github.com/cveye/Inj3ctStop/tree/main/experiments/v4-signature-heuristic)
 
 ### 🔹 v1 — Simple Filters & Scoped Prompts
 - Shows why naive wrappers and regex sanitization fail 🚨
@@ -53,7 +53,17 @@ All experiments use **simulated inputs** for learning and research. This repo is
 
 - [See code](experiments/v3-context-aware)
 
-More experiments are planned — each adds realism and complexity to the stack.
+### v4 — When heuristics meet signatures: catching obfuscated prompt injections
+
+*Treat prompt injections like malware.*
+
+
+### 🧠 Highlights
+- **Signature Guard:** Regex-based detections with severity & category (override, delete, exfil, secret).  
+- **Heuristic Guard:** Behavioral scoring — entropy + DistilGPT-2 perplexity + length.  
+- **Fusion Engine:** Weighted combination → unified risk score in [0 … 1].  
+- **Normalization:** Detects *leet-speak* like `I9gn0r3 pr3v10us` → `ignore previous`.  
+- **Threat Meter UI:** Green ✅ → Yellow ⚠️ → Red 🚩 based on final risk.  
 
 ---
 
@@ -63,18 +73,18 @@ Clone and run an experiment with latest-v3:
 
 ```bash
 git clone https://github.com/cveye/Inj3ctStop.git
-cd Inj3ctStop/experiments/v3-context-aware
+cd Inj3ctStop/experiments/v4-signature-heuristic
 
 make install
 make run
 
-# then open http://localhost:8080/v3exp
+# then open http://localhost:8084/sigheu
 ```
 
 
-![alt text](resources/memory_context.jpg)
+![alt text](resources/sc-5.jpg)
 
-[See here for more of v3](experiments/v3-context-aware)
+[See here for more of v4](experiments/v4-signature-heuristic)
 
 ## 📊 Roadmap
 - v1: ✅ Simple filters + scoped prompts
@@ -82,7 +92,7 @@ make run
 - v2: ✅ Chained guards pipeline
 
 - v3: ✅ Context-aware detection (memory + context guard)
-- v4: 🔄 Signature + heuristic engine (IDS-style rules + entropy/keyword scores)
+- v4: ✅ Signature + heuristic engine (IDS-style rules + entropy/keyword scores)
 
 - Vn: 🔄 More to come ....
 
